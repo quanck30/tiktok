@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // optional
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 
-import { Wrapper as PropperWrapper } from '~/components/Propper'
+import { Wrapper as PropperWrapper } from '~/components/Popper'
 import style from './Header.module.scss'
 import images from '~/assets/images'
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu'
 const cx = classNames.bind(style)
 function Header() {
     const [searchResults, setSearchResults] = useState([])
@@ -56,9 +56,15 @@ function Header() {
             <div className={cx('actions')}>
                 <Button outlineBlack leftIcon={<FontAwesomeIcon icon={faPlus} />}>Upload</Button>
                 <Button primary >Log in</Button>
+
+                <Menu>
+                    <button className={cx('more-btn')}>
+                        <FontAwesomeIcon icon={faEllipsisVertical} ></FontAwesomeIcon>
+                    </button>
+                </Menu>
             </div>
         </div>
-    </header>
+    </header >
 }
 
 export default Header; 
