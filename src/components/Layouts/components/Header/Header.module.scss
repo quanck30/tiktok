@@ -13,6 +13,7 @@ $search-button-width: 52px;
   .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -88,9 +89,32 @@ $search-button-width: 52px;
   font-weight: 600;
   font-size: 1.4rem;
 }
+
+// Acctions
+.actions {
+  display: flex;
+  justify-items: center;
+
+  .user-btn {
+    font-size: 2.2rem;
+    padding: 4px 16px;
+    margin-left: 10px;
+    color: #161823;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .user-avatar {
+    height: 32px;
+    width: 32px;
+    margin-left: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
 .more-btn {
   margin-left: 28px;
   padding: 4px 8px;
   font-size: 2rem;
   background-color: transparent;
+  cursor: pointer;
 }
