@@ -2,16 +2,33 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faKeyboard, faCircleQuestion, faEarthAsia, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
 
-import { Wrapper as PropperWrapper } from '~/components/Popper'
+import { Wrapper as PopperWrapper } from '~/components/Popper'
 import style from './Header.module.scss'
 import images from '~/assets/images'
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
-import Menu from '~/components/Popper/Menu'
+import Menu from '~/components/Popper/Menu';
 const cx = classNames.bind(style)
+
+
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'English',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Keyboard shortcuts',
+    }
+]
 function Header() {
     const [searchResults, setSearchResults] = useState([])
 
@@ -32,13 +49,13 @@ function Header() {
                 interactive={true}
                 render={attrs => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PropperWrapper >
+                        <PopperWrapper >
                             <h4 className={cx('search-title')}>Accounts</h4>
                             <AccountItem />
                             <AccountItem />
                             <AccountItem />
                             <AccountItem />
-                        </PropperWrapper>
+                        </PopperWrapper>
                     </div>
                 )}
             >
@@ -57,7 +74,7 @@ function Header() {
                 <Button outlineBlack leftIcon={<FontAwesomeIcon icon={faPlus} />}>Upload</Button>
                 <Button primary >Log in</Button>
 
-                <Menu>
+                <Menu items={MENU_ITEMS}>
                     <button className={cx('more-btn')}>
                         <FontAwesomeIcon icon={faEllipsisVertical} ></FontAwesomeIcon>
                     </button>

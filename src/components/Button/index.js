@@ -4,7 +4,8 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ to,
+function Button({
+    to,
     href,
     primary = false,
     outline = false,
