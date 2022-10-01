@@ -96,14 +96,16 @@ $search-button-width: 52px;
   justify-items: center;
 
   .user-btn {
+    display: flex;
+    align-items: center;
     font-size: 2.2rem;
     padding: 4px 16px;
-    margin-left: 10px;
     color: #161823;
     background-color: transparent;
     cursor: pointer;
   }
   .user-avatar {
+    margin-top: 4px;
     height: 32px;
     width: 32px;
     margin-left: 24px;
