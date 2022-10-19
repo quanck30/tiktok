@@ -8,6 +8,8 @@ import {
     faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 
+import * as searchService from '~/apiService/searchService';
+import { useDebounce } from '~/hooks';
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import style from './Search.module.scss'
 import AccountItem from '~/components/AccountItem';
@@ -22,24 +24,23 @@ function Search() {
     const [showResult, setShowResult] = useState(true)
     const [loading, setLoading] = useState(false)
 
+    const debounce = useDebounce(searchValue, 500)
     const inputRef = useRef()
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             setSearchResults([])
             return;
         }
-        setLoading(true)
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then(res => res.json())
-            .then(res => {
-                setSearchResults(res.data)
-                setLoading(false)
-            })
-            .catch(() => (
-                setLoading(false)
-            ))
-    }, [searchValue])
+        const fetchApi = async () => {
+            setLoading(true)
+            const result = await searchService.search(debounce)
+            setSearchResults(result)
+            setLoading(false)
+        }
+        fetchApi()
+
+    }, [debounce])
 
     const handleClear = () => {
         setSearchValue('')
